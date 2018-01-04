@@ -3,7 +3,190 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<style type="text/css">
+			ul {
+				list-style: none;font-size: 0px;position: absolute;top: -700px;
+			}
+			* {
+				margin: 0;padding: 0;
+			}
+			#view {
+				width: 600px;height: 700px;margin: 0 auto;border: 1px solid red;overflow: hidden;position: relative;
+			}
+			#view>ul>li>img {
+				width: 600px;height: 700px;
+			}
+			.xiaohong {
+				display: block;position: absolute;width: 80px;height: 70px;background: url(img/xiaohong.png) no-repeat center;background-size: 100%;
+				z-index: 1000;top:-100px;
+			}
+			.myplan {
+				width: 100px;height: 100px;background: url(img/Hero.png) no-repeat;background-size: 100%;position: absolute;top: 85%;left: 40%;
+				margin-left: -50px;cursor: none;
+			}
+			.bullet {
+				background: url(img/bullet_04.png) no-repeat center;width: 9px;height: 21px;position: absolute;z-index: 1000;
+			}
+			#ck{width: 10rem;height: 3rem;border: none;position: absolute;left: 40rem;}
+		</style>
 	</head>
 	<body>
+		<div id="view">
+			<ul>
+				<li><img src="img/background.png"/></li>
+				<li><img src="img/background.png"/></li>
+				<li><img src="img/background.png"/></li>
+			</ul>
+		</div>
+		<button id="ck">重新开始</button>
 	</body>
+	<script type="text/javascript">
+		var ul = document.querySelector("ul");//获取ul
+		var li = document.querySelectorAll("li");//获取li
+		var time = null;
+		var speed = 4;
+		clearInterval(time);
+		time = setInterval(function(){
+			if (ul.offsetTop>=0) {//当ul距离屏幕顶端小于或者等于0的时候
+				ul.style.top = -1400+"px";//让ul的top变为1400px
+			}
+			ul.style.top = ul.offsetTop+speed+"px";//ul的top为他距离屏幕顶端的距离加速度来执行
+		},20)
+		var game = {
+			start:function(){
+				//创建英雄机
+				game.createMyPlan();//调用英雄机
+				var _this = this;//变量名,让计时器里面可以使用this
+				var n = 0;
+				ss=setInterval(function(){
+					//创建敌机
+					n++;
+					if(n%100 == 0){
+						_this.createPlan();//创建飞机
+					}else if(n%30 == 0){
+						_this.createBullte();//创建子弹
+					}
+					_this.planMove();
+					_this.bullteMove();
+					//碰撞检测
+					_this.pz();
+					_this.boom();
+				},10)
+			},
+			//创建飞机
+			createPlan:function(){
+				var p = document.createElement("p");//首先创建一个p元素
+				p.className = "xiaohong";//给创建的p元素加一个类名
+				p.style.left = Math.random()*(600-80)+"px";//left值随机
+				view.appendChild(p);//给view追加一个p元素
+			},
+			//飞机移动和删除
+			planMove:function(){
+				//找到所有的飞机	然后让每一个下落
+				var arr = document.querySelectorAll(".xiaohong");//获取所有创建的飞机
+				for(var i=0;i<arr.length;i++){
+					//让这个元素的top值自增
+					if (arr[i]&&arr[i].offsetTop>700) {//每个飞机距离屏幕顶端的距离大于700的时候
+						view.removeChild(arr[i])//删除当前的飞机
+					}
+					arr[i].style.top = arr[i].offsetTop+3+"px";//飞机下落的速度
+				}
+			},
+			//创建英雄机
+			createMyPlan:function(){
+				var el = document.createElement("div");//创建一个英雄机
+				el.className = "myplan";//给创建的英雄机添加一个类名
+				document.onmousemove = function(e){//写一个鼠标移动事件		
+					el.style.left = e.clientX-view.offsetLeft+"px";//设置英雄机的left值等于鼠标的坐标
+					el.style.top = e.clientY+"px";//top值等于鼠标的坐标
+				};
+				view.appendChild(el);//把英雄机添加到view页面
+			},
+			//创建子弹
+			createBullte:function(){
+				var p=document.createElement("p")//创建一个p标签当作子弹
+				var myplan=document.getElementsByClassName("myplan")[0];
+				p.className="bullet";//给创建的子弹添加一个类名
+				p.style.left=parseInt(myplan.style.left)-40+"px";//让子弹和飞机的left值相同	取整让它的位置到它的左侧
+				p.style.top=myplan.style.top;//让子弹和飞机的top值相同	
+				var p2 = p.cloneNode(p);//复制一个子弹
+				p2.style.left=parseInt(myplan.style.left)+40+"px";//让子弹和飞机的left值相同	取整让它的位置到它的右侧
+				view.appendChild(p);//把子弹添加到view
+				view.appendChild(p2);//把子弹添加到view
+			},
+			//子弹下落的速度
+			bullteMove:function(){
+				var bullteArr=document.getElementsByClassName("bullet")//获取类名为bullet的元素
+				for (var i = 0; i < bullteArr.length; i++) {//循环遍历所有的子弹
+					if (bullteArr[i]&&bullteArr[i].offsetTop<1) {
+						view.removeChild(bullteArr[i])
+						bullteArr[i]!=undefined;
+					}
+					bullteArr[i].style.top=bullteArr[i].offsetTop-5+"px";
+					
+				}
+			},
+			//飞机互相碰撞
+			pz:function  () {
+				var myplan = document.getElementsByClassName("myplan")[0];//获取英雄机器
+				var arr = document.querySelectorAll('.xiaohong');//获取所有飞机(敌机)
+				var zidan = document.querySelectorAll(".bullet");
+				for (var i = 0; i < arr.length; i++) {//循环小于所有飞机的length
+					var ml = myplan.offsetLeft;
+					var mt = myplan.offsetTop;
+					var mr = myplan.offsetLeft+myplan.offsetWidth;
+					var mb = myplan.offsetTop+myplan.offsetHeight;
+					
+					var al = arr[i].offsetLeft;
+					var at = arr[i].offsetTop;
+					var ar = arr[i].offsetLeft+arr[i].offsetWidth;
+					var ab = arr[i].offsetTop+arr[i].offsetHeight;
+						if (!(ml>ar||mb<at||mr<al||mt>ab)){
+//							myplan.style.background="url(img/hero_blowup_n4.png)";
+							view.removeChild(myplan);
+							view.removeChild(arr[i]);
+							clearInterval(ss);
+							clearInterval(time);
+							for (var j = 0; j < zidan.length; j++) {
+							view.removeChild(zidan[j]);
+							}
+							clearInterval(ss);
+							var GG = document.createElement("p");
+							GG.innerHTML="Game over";
+							GG.style.position="absolute";
+							GG.style.top="50%";
+							GG.style.left="36%";
+							GG.style.fontSize="30px";
+							GG.style.fontWeight="bold";
+							view.append(GG);
+						}
+				}
+			},	
+			//子弹碰撞飞机
+			boom:function  () {
+				var arr = document.querySelectorAll('.xiaohong');
+				var zidan = document.querySelectorAll('.bullet');
+				for (var i = 0; i < arr.length; i++) {
+					for (var j = 0; j < zidan.length; j++) {
+						var zl = zidan[j].offsetLeft;
+						var zt = zidan[j].offsetTop;
+						var zr = zidan[j].offsetLeft+zidan[j].offsetWidth;
+						var zb = zidan[j].offsetTop+zidan[j].offsetHeight;
+						var al = arr[i].offsetLeft;
+						var at = arr[i].offsetTop;
+						var ar = arr[i].offsetLeft+arr[i].offsetWidth;
+						var ab = arr[i].offsetTop+arr[i].offsetHeight;
+						if (!(zl>ar||zb<at||zr<al||zt>ab)){
+//							arr[i].style.background="url(img/Hero.png)";
+							view.removeChild(arr[i]);
+						}
+					}
+				}
+			}
+		}
+		game.start();
+		ck.onclick=function  () {
+			window.location.reload();//点击让页面刷新
+		}
+	</script>
 </html>
