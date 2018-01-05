@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none; }
+
+input::-webkit-input-placeholder {
+  color: #B6B6B6; }
+
+body {
+  background: #efefef; }
+
+header {
+  width: 100%;
+  background: #000;
+  height: 6.5rem;
+  text-align: center;
+  line-height: 6.5rem;
+  font-size: 2rem; }
+  header a {
+    color: #f1c40f; }
+
+.box {
+  width: 690px;
+  height: 476px;
+  margin: auto;
+  margin-top: 12.2rem;
+  background: #fff; }
+  .box .logo {
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    font-family: "rockwell extra bold"; }
+    .box .logo img {
+      height: 36px;
+      margin-top: 52px; }
+  .box .title {
+    margin-left: 202px;
+    margin-top: 40px;
+    font-size: 21px;
+    color: #F1C40F; }
+  .box .content {
+    margin: 20px 0 0 202px; }
+    .box .content .name {
+      height: 24px;
+      line-height: 24px;
+      font-size: 12px; }
+    .box .content .content-1 {
+      width: 302px;
+      height: 38px;
+      border: 1px solid #ddd;
+      padding: 0 14px;
+      font-size: 12px;
+      border-radius: 2px; }
+      .box .content .content-1 input {
+        width: 258px;
+        height: 24px;
+        color: #b6b6b6;
+        float: left;
+        margin-top: 6px;
+        border: none;
+        outline: 0; }
+      .box .content .content-1 img {
+        float: right;
+        width: 14px;
+        height: 14px;
+        margin-top: 12px; }
+    .box .content .yonghu1 {
+      font-size: 12px;
+      height: 24px;
+      line-height: 24px; }
+    .box .content .content-2 {
+      width: 302px;
+      height: 38px;
+      border: 1px solid #ddd;
+      padding: 0 14px;
+      font-size: 12px;
+      border-radius: 2px; }
+      .box .content .content-2 input {
+        width: 258px;
+        height: 24px;
+        color: #b6b6b6;
+        float: left;
+        margin-top: 6px;
+        border: none;
+        outline: 0; }
+      .box .content .content-2 img {
+        float: right;
+        width: 14px;
+        height: 14px;
+        margin-top: 12px; }
+    .box .content .tishi {
+      width: 25.2rem;
+      text-align: center;
+      line-height: 46px;
+      height: 30px;
+      margin-bottom: 10px;
+      color: red; }
+    .box .content .btn {
+      width: 332px;
+      height: 38px;
+      line-height: 38px;
+      background: #F1C40F;
+      border: 0;
+      color: #fff;
+      font-size: 18px;
+      text-align: center;
+      cursor: pointer; }
+    .box .content .xuanqu {
+      width: 302px;
+      margin-top: 40px;
+      line-height: 14px; }
+      .box .content .xuanqu div {
+        width: 14px;
+        height: 14px;
+        float: left;
+        position: relative; }
+        .box .content .xuanqu div img {
+          position: absolute; }
+        .box .content .xuanqu div img:nth-of-type(1) {
+          z-index: 10; }
+      .box .content .xuanqu p {
+        font-size: 12px;
+        color: #B6B6B6;
+        float: left;
+        margin-left: 12px; }
+      .box .content .xuanqu .che {
+        float: left; }
+
+/*# sourceMappingURL=index.css.map */

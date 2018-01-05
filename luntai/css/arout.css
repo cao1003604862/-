@@ -1,0 +1,104 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none; }
+
+.box {
+  width: 100%;
+  background: #1C1C1E;
+  display: flex;
+  justify-content: center;
+  height: 78px;
+  line-height: 78px; }
+  .box ul {
+    width: 48%;
+    display: flex;
+    text-align: center;
+    color: #727271;
+    box-sizing: border-box; }
+    .box ul a {
+      color: #727271; }
+    .box ul li {
+      font-size: 15px;
+      height: 60px; }
+    .box ul .li1 {
+      margin-left: 7rem; }
+    .box ul .li2 {
+      color: #CBA303;
+      margin-left: 7rem;
+      border-bottom: 3px solid #CBA303; }
+    .box ul .li3 {
+      margin-left: 5rem; }
+    .box ul .li4 {
+      margin-left: 5rem; }
+    .box ul .li5 {
+      margin-left: 4.2rem; }
+  .box ul li:hover {
+    color: #CBA303;
+    border-bottom: 3px solid #CBA303; }
+
+.wei {
+  width: 100%;
+  padding: 3.5rem 0;
+  text-align: center;
+  background: #222222;
+  color: #5e5b5b;
+  font-size: 21px; }
+
+.box1 {
+  background: url(../img/产品介绍/首页-产品介绍_02.jpg) no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 284px; }
+
+.daohan {
+  width: 100%;
+  height: 34.14px;
+  background: #262626; }
+
+.daohan div {
+  float: right;
+  font-size: 14px;
+  color: #727271;
+  line-height: 34.14px;
+  margin-right: 26rem; }
+
+.box2 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0; }
+  .box2 .box2a {
+    width: 78%; }
+    .box2 .box2a .box2a1 {
+      width: 100%;
+      display: flex;
+      padding: 0.5rem 0;
+      justify-content: space-between; }
+      .box2 .box2a .box2a1 .box2a11 {
+        width: 48%;
+        display: flex;
+        justify-content: space-between; }
+        .box2 .box2a .box2a1 .box2a11 .wenzi {
+          font-size: 14px;
+          margin-top: 0.2rem;
+          width: 30%; }
+        .box2 .box2a .box2a1 .box2a11 .xiala {
+          display: flex;
+          justify-content: space-between;
+          padding: 0.5rem;
+          width: 41%;
+          border-radius: 2px;
+          background: #fff;
+          /* color: #8f8f8f; */
+          font-size: 12px;
+          border: 1px solid #CECECE;
+          position: relative;
+          z-index: 10; }
+
+.xiala:hover .bb {
+  transform: rotate(-90deg); }
+
+/*# sourceMappingURL=arout.css.map */

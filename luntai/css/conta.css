@@ -1,0 +1,80 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.box {
+  width: 100%;
+  background: #1C1C1E;
+  display: flex;
+  justify-content: center;
+  height: 78px;
+  line-height: 78px; }
+  .box ul {
+    width: 48%;
+    display: flex;
+    text-align: center;
+    color: #727271;
+    box-sizing: border-box; }
+    .box ul a {
+      color: #727271; }
+    .box ul li {
+      font-size: 15px;
+      height: 60px; }
+    .box ul .li1 {
+      margin-left: 7rem; }
+    .box ul .li2 {
+      margin-left: 7rem; }
+    .box ul .li3 {
+      margin-left: 5rem; }
+    .box ul .li4 {
+      color: #CBA303;
+      margin-left: 5rem;
+      border-bottom: 3px solid #CBA303; }
+    .box ul .li5 {
+      margin-left: 4.2rem; }
+  .box ul li:hover {
+    color: #CBA303;
+    border-bottom: 3px solid #CBA303; }
+
+.wei {
+  width: 100%;
+  padding: 3.5rem 0;
+  text-align: center;
+  background: #222222;
+  color: #5e5b5b;
+  font-size: 21px; }
+
+.box1 {
+  width: 100%;
+  height: 284px;
+  background: url(../img/联系我们切图/轮胎-联系我们.png) no-repeat;
+  background-size: 100% 100%; }
+
+.box2 {
+  width: 100%;
+  display: flex;
+  justify-content: center; }
+  .box2 .box2a {
+    width: 50.4%;
+    padding: 3.4rem 0; }
+    .box2 .box2a h1 {
+      text-align: center;
+      color: #191919; }
+  .box2 .box2b {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0; }
+    .box2 .box2b img {
+      width: 47%;
+      height: 200px; }
+    .box2 .box2b .right p {
+      font-size: 14px;
+      color: #727271; }
+
+.jie p {
+  padding: 1rem 0; }
+
+/*# sourceMappingURL=conta.css.map */

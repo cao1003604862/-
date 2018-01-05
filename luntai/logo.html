@@ -1,0 +1,131 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/logo.css">
+    <script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+    <header>
+        <a href="#">LOGO</a>
+    </header>
+    <div class="box">
+        <div class="logo">
+            <img src="img/登录/dllogo.png" />
+        </div>
+        <div class="title">
+        	Login Into Your Account	
+        </div>
+        <div class="content">
+        	<p class="name">
+        		
+        	</p>
+        	<div class="content-1">
+        		<input type="text" placeholder="User Name" id="username" />
+        		<img src="img/登录/输入名称.png" />
+        	</div>
+        	<p class="yonghu1">
+        		
+        	</p>
+        	<div class="content-2">
+        		<input type="password" placeholder="Password" id="psd"/>
+        		<img src="img/登录/输入密码.png" />
+        	</div>
+        	<div class="tishi">
+        		
+        	</div>
+        	<div class="btn" id="submit">
+        		Sign In
+        	</div>
+        	<div class="xuanqu">
+        		<!--<div>
+        			<img src="img/登录/记住我.png" class="x1"/>
+        			<img src="img/登录/记住我-1.png" class="x2"/>
+        		</div>-->
+        		<input type="checkbox" name="check" id="check" class="che"/>
+        		<p>Remember Me</p>
+        	</div>
+        </div>
+	</div>
+</body>
+<script type="text/javascript">
+//	$(".x1").click(function(){
+//		$(".x2").show().siblings().hide()
+//	})
+//	$(".x2").click(function(){
+//		$(".x1").show().siblings().hide()
+//	})
+	var inpt = document.querySelectorAll('input');
+	var t = document.querySelector('.tishi');
+	inpt[0].onblur = function(){
+		var reg = /^[A-z]+[A-z_\d]{6,18}$/;
+		if (reg.test(inpt[0].value) == true) {
+			t.innerHTML = "恭喜,用户名可以使用";
+			t.style.color = "limegreen";
+		} else{
+			t.innerHTML = "6~18个字符,可使用字母,数字,下划线,需以字母开头";
+			t.style.color = "red";
+		}
+	}
+	inpt[1].onblur = function(){
+		var reg = /^[A-z\d]{6,12}$/
+		if (reg.test(inpt[1].value) == true) {
+			t.innerHTML = "密码强度为:高";
+			t.style.color = "limegreen";
+		} else{
+			t.innerHTML = "6~12个字符,区分大小写";
+			t.style.color = "red";
+		}
+	}
+	//打开网页就要判断   有没有存储cookie
+	//如果有  放到用户的输入框
+	//并且勾选状态
+	$('#submit').click(function() {
+		$.ajax({
+			type: "post",
+			url: "http://47.92.37.168/luntai/php/index.php?C=Login&M=login",
+			dataType:"json",
+			data: {
+				'username': $('#username').val(),
+				'password': $('#psd').val()
+			},
+			success: function(data) {
+				if ($.cookie('username')) {
+					$('#username').val($.cookie('username'));
+					$('#psd').val($.cookie('username'));
+					$('#check').attr('checked',true);
+				} 
+				//先得到勾选框的状态	cookieName=true代表勾选了
+				var cookieName;
+				$('#check').change(function(){
+					cookieName=$(this).prop('checked');
+				})
+				//登录的时候判断有没有勾选
+				$('#submit').click(function(){
+					if (cookieName) {////勾选
+						$.cookie('username',$('#username').val(),{expires:7});
+						$.cookie('pad',$('#psd').val(),{expires:7});
+						sessionStorage.setItem('username',$('#username').val());
+						location.href='home.html';
+					}else{//未勾选
+						sessionStorage.setItem('username',$('#username').val());
+						location.href='home.html';
+					}
+					return false;
+				})
+				if(data.code == '200') {
+					location.href = 'home.html';
+				}else if(data.code != '200'){
+//						alert("This email has been registered!")
+					t.innerHTML = "用户名密码不匹配"
+				}
+			}
+		});
+		return false;
+	})
+	
+</script>
+</html>
